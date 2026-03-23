@@ -55,7 +55,15 @@ class PreviewCodeGenerator {
   static String getGeneratedDtdConnectionInfoFilePath(FileSystem fs) =>
       fs.path.join('lib', 'src', 'dtd', 'dtd_connection_info.dart');
 
+<<<<<<< HEAD
   void populateDtdConnectionInfo(Uri dtdUri) {
+=======
+  void populateDtdConnectionInfo({
+    required Uri dtdUri,
+    required String widgetPreviewServiceName,
+    required String widgetPreviewScaffoldStreamName,
+  }) {
+>>>>>>> 2c9eb20739dfec95e2c74bd3dfa4601b0a8a36aa
     final emitter = cb.DartEmitter.scoped(useNullSafetySyntax: true);
     final lib = cb.Library(
       (cb.LibraryBuilder b) => b
@@ -68,6 +76,23 @@ class PreviewCodeGenerator {
               ..type = cb.refer('String')
               ..assignment = cb.literalString(dtdUri.toString()).code;
           }),
+<<<<<<< HEAD
+=======
+          cb.Field((b) {
+            b
+              ..name = 'kWidgetPreviewService'
+              ..modifier = cb.FieldModifier.constant
+              ..type = cb.refer('String')
+              ..assignment = cb.literalString(widgetPreviewServiceName).code;
+          }),
+          cb.Field((b) {
+            b
+              ..name = 'kWidgetPreviewScaffoldStream'
+              ..modifier = cb.FieldModifier.constant
+              ..type = cb.refer('String')
+              ..assignment = cb.literalString(widgetPreviewScaffoldStreamName).code;
+          }),
+>>>>>>> 2c9eb20739dfec95e2c74bd3dfa4601b0a8a36aa
         ]),
     );
     final File generatedDtdConnectionInfoFile = fs.file(
